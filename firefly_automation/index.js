@@ -48,24 +48,32 @@ function getRandomCoordinate(maxRow, maxColumn) {
 }
 
 /** 
-  Function to print a single star border box
+  Function to print a single star border box with a random star position
   @param {number} height - The height of the box.
   @param {number} width - The width of the box.
 */
 function printSingleStarBorderBox(height, width) {
-  let starRow = Math.floor(height / 2);
-  let starColumn = Math.floor(width / 2);
+  // Define a function to update and print the box with a random star position
+  function updateBox() {
+    let starRow = Math.floor(Math.random() * height);
+    let starColumn = Math.floor(Math.random() * width);
+    const boxContent = printStarBorderBox(height, width, starRow, starColumn);
 
-  const boxContent = printStarBorderBox(height, width, starRow, starColumn);
+    // Output the box content to the console
+    console.clear();
+    console.log(boxContent);
+  }
 
-  // Output the box content to the console
-  console.clear();
-  console.log(boxContent);
+  // Call the updateBox function initially
+  updateBox();
+
+  // Set interval to update the box every 500 milliseconds (adjust as needed)
+  setInterval(updateBox, 5000);
 }
 
 // Dimensions of the star border box
 const height = 30;
 const width = 50;
 
-// Start printing the single star border box
+// Start printing the single star border box with continuous updates
 printSingleStarBorderBox(height, width);
